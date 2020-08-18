@@ -1,0 +1,1 @@
+Building a 3D Raytracer from scratch in C++17 with comprehensive unit test coverage, following Jamis Buck's *The Ray Tracer Challenge*. 
