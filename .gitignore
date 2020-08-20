@@ -1,2 +1,4 @@
 bin/
-render/bin/
+render/build/
+.vscode/
+test/build/
