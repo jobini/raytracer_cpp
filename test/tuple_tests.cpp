@@ -25,3 +25,17 @@ TEST_CASE("A tuple with w = 1.0 is a point, and with w = 0.0 is a vector."){
         REQUIRE(a.isVector() == true);
     }
 }
+
+TEST_CASE("point() creates tuples with w = 1.0."){
+    GIVEN("A point created using the point function"){
+        Tuple a = point(4, -4, 3);
+        REQUIRE(a == Tuple(4, -4, 3, 1));
+    }
+}
+
+TEST_CASE("vector() creates tuples with w = 0.0."){
+    GIVEN("A vector created using the vector function"){
+        Tuple a = vector(4, -4, 3);
+        REQUIRE(a == Tuple(4, -4, 3, 0));
+    }
+}

@@ -1,4 +1,6 @@
 #include "tuple.h"
+#include "consts.h"
+#include <cmath>
 
 bool Tuple::isPoint(){
     if (this->w == 1.0)
@@ -18,5 +20,12 @@ Tuple point(float x, float y, float z){
 
 Tuple vector(float x, float y, float z){
     return Tuple(x, y, z, 0.0);
+}
+
+bool operator==(const Tuple a, const Tuple b){
+    return (std::abs(a.x - b.x) < EPSILON 
+            && std::abs(a.y - b.y) < EPSILON
+            && std::abs(a.z - b.z) < EPSILON
+            && std::abs(a.w - b.w) < EPSILON);
 }
 
