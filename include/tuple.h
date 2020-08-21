@@ -12,10 +12,9 @@ class Tuple
         float y;
         float z;
         float w;
-
-        friend bool operator==(const Tuple a, const Tuple b);
 };
 
+bool operator==(const Tuple a, const Tuple b);
 Tuple point(float x, float y, float z);
 Tuple vector(float x, float y, float z);
 
