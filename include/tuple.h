@@ -14,7 +14,7 @@ class Tuple
         float w;
 };
 
-bool operator==(const Tuple a, const Tuple b);
+bool operator==(const Tuple &a, const Tuple &b);
 Tuple point(float x, float y, float z);
 Tuple vector(float x, float y, float z);
 
