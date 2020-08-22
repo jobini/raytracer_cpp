@@ -12,6 +12,10 @@ class Tuple
         float y;
         float z;
         float w;
+        Tuple operator+(const Tuple &b);
+        Tuple operator-(const Tuple &b);
+        Tuple operator+=(const Tuple &b);
+        Tuple operator-=(const Tuple &b);
 };
 
 bool operator==(const Tuple &a, const Tuple &b);

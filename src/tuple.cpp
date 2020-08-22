@@ -29,3 +29,18 @@ bool operator==(const Tuple &a, const Tuple &b){
             && std::abs(a.w - b.w) < EPSILON);
 }
 
+Tuple Tuple::operator+(const Tuple &b){
+    return Tuple(this->x + b.x, this->y + b.y, this->z + b.z, this->w + b.w);
+}
+
+Tuple Tuple::operator-(const Tuple &b){
+    return Tuple(this->x - b.x, this->y - b.y, this->z - b.z, this->w - b.w);
+}
+
+Tuple Tuple::operator+=(const Tuple &b){
+    return *this + b;
+}
+
+Tuple Tuple::operator-=(const Tuple &b){
+    return *this - b;
+}

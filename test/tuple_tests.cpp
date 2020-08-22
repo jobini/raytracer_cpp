@@ -39,3 +39,23 @@ TEST_CASE("vector() creates tuples with w = 0.0"){
         REQUIRE(a == Tuple(4, -4, 3, 0));
     }
 }
+
+TEST_CASE("Adding two tuples"){
+    GIVEN ("Two tuples a1 = (3, -2, 5, 1) and a2 = (-2, 3, 1, 0)"){
+        Tuple a1 = Tuple(3, -2, 5, 1);
+        Tuple a2 = Tuple(-2, 3, 1, 0);
+
+        REQUIRE((a1 + a2) == Tuple(1, 1, 6, 1));
+        REQUIRE((a1 += a2) == Tuple(1, 1, 6, 1));
+    }
+}
+
+TEST_CASE("Subtracting two points"){
+    GIVEN ("Two points p1 = (3, 2, 1) and p2 = (5, 6, 7)"){
+        Tuple p1 = point(3, 2, 1);
+        Tuple p2 = point(5, 6, 7);
+
+        REQUIRE((p1 - p2) == vector(-2, -4, -6));
+        REQUIRE((p1 -= p2) == vector(-2, -4, -6));
+    }
+}
