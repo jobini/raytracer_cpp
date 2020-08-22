@@ -26,6 +26,15 @@ float magnitude(const Tuple &a){
     return sqrt(pow(a.x, 2) + pow(a.y, 2) + pow(a.z, 2) + pow(a.w, 2));
 }
 
+Tuple normalize(const Tuple &a){
+    if (a == Tuple(0, 0, 0, 0))
+        return a;
+    return Tuple(a.x/magnitude(a), 
+                 a.y/magnitude(a), 
+                 a.z/magnitude(a), 
+                 a.w/magnitude(a));
+}
+
 bool operator==(const Tuple &a, const Tuple &b){
     return (std::abs(a.x - b.x) < EPSILON 
             && std::abs(a.y - b.y) < EPSILON

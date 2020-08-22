@@ -7,10 +7,10 @@ TEST_CASE("A tuple with w = 1.0 is a point."){
     GIVEN ("A tuple with w = 1.0"){
         Tuple a = Tuple(4.3, -4.2, 3.1, 1.0);
 
-        REQUIRE(a.x == Approx(4.3).margin(1e-12));
-        REQUIRE(a.y == Approx(-4.2).margin(1e-12));
-        REQUIRE(a.z == Approx(3.1).margin(1e-12));
-        REQUIRE(a.w == Approx(1.0).margin(1e-12));
+        REQUIRE(a.x == Approx(4.3).margin(1e-6));
+        REQUIRE(a.y == Approx(-4.2).margin(1e-6));
+        REQUIRE(a.z == Approx(3.1).margin(1e-6));
+        REQUIRE(a.w == Approx(1.0).margin(1e-6));
         REQUIRE(a.isPoint() == true);
         REQUIRE(a.isVector() == false);
     }
@@ -20,10 +20,10 @@ TEST_CASE("A tuple with w = 0.0 is a vector."){
     GIVEN("A tuple with w = 0.0"){
         Tuple a = Tuple(4.3, -4.2, 3.1, 0.0);
 
-        REQUIRE(a.x == Approx(4.3).margin(1e-12));
-        REQUIRE(a.y == Approx(-4.2).margin(1e-12));
-        REQUIRE(a.z == Approx(3.1).margin(1e-12));
-        REQUIRE(a.w == Approx(0.0).margin(1e-12));
+        REQUIRE(a.x == Approx(4.3).margin(1e-6));
+        REQUIRE(a.y == Approx(-4.2).margin(1e-6));
+        REQUIRE(a.z == Approx(3.1).margin(1e-6));
+        REQUIRE(a.w == Approx(0.0).margin(1e-6));
         REQUIRE(a.isPoint() == false);
         REQUIRE(a.isVector() == true);
     }
@@ -122,34 +122,60 @@ TEST_CASE("Dividing a tuple by a scalar"){
 TEST_CASE("Computing the magnitude of (1, 0, 0)"){
     GIVEN ("A vector a = (1, 0, 0)"){
         Tuple a = vector(1, 0, 0);
-        REQUIRE(magnitude(a) == Approx(1).margin(1e-12));
+        REQUIRE(magnitude(a) == Approx(1).margin(1e-6));
     }
 }
 
 TEST_CASE("Computing the magnitude of (0, 1, 0)"){
     GIVEN ("A vector a = (0, 1, 0)"){
         Tuple a = vector(0, 1, 0);
-        REQUIRE(magnitude(a) == Approx(1).margin(1e-12));
+        REQUIRE(magnitude(a) == Approx(1).margin(1e-6));
     }
 }
 
 TEST_CASE("Computing the magnitude of (0, 0, 1)"){
     GIVEN ("A vector a = (0, 0, 1)"){
         Tuple a = vector(0, 0, 1);
-        REQUIRE(magnitude(a) == Approx(1).margin(1e-12));
+        REQUIRE(magnitude(a) == Approx(1).margin(1e-6));
     }
 }
 
 TEST_CASE("Computing the magnitude of (1, 2, 3)"){
     GIVEN ("A vector a = (1, 2, 3)"){
         Tuple a = vector(1, 2, 3);
-        REQUIRE(magnitude(a) == Approx(sqrt(14)).margin(1e-12));
+        REQUIRE(magnitude(a) == Approx(sqrt(14)).margin(1e-6));
     }
 }
 
 TEST_CASE("Computing the magnitude of (-1, -2, -3)"){
     GIVEN ("A vector a = (-1, -2, -3)"){
         Tuple a = vector(-1, -2, -3);
-        REQUIRE(magnitude(a) == Approx(sqrt(14)).margin(1e-12));
+        REQUIRE(magnitude(a) == Approx(sqrt(14)).margin(1e-6));
+    }
+}
+
+TEST_CASE("Normalizing vector (4, 0, 0)"){
+    GIVEN ("A vector v = (4, 0, 0)"){
+        Tuple v = vector(4, 0, 0);
+        REQUIRE(normalize(v) == vector(1, 0, 0));
+    }
+}
+
+TEST_CASE("Normalizing vector (1, 2, 3)"){
+    GIVEN ("A vector v = (1, 2, 3)"){
+        Tuple v = vector(1, 2, 3);
+        REQUIRE(normalize(v) == vector(1./sqrt(14), 2/sqrt(14), 3/sqrt(14)));
+    }
+}
+
+TEST_CASE("The magnitude of a normalized vector"){
+    GIVEN ("A vector v = (1, 2, 3)"){
+        Tuple v = vector(1, 2, 3);
+        WHEN("v is normalized"){
+            Tuple norm = normalize(v);
+            THEN("the magnitude of norm = 1"){
+                REQUIRE(magnitude(norm) == Approx(1).margin(1e-6));
+            }
+        }
     }
 }
