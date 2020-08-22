@@ -14,6 +14,11 @@ class Tuple
         float w;
         Tuple operator+(const Tuple &b);
         Tuple operator-(const Tuple &b);
+        Tuple operator-();
+        Tuple operator*(const float &k);
+        Tuple operator/(const float &k);
+        Tuple operator*=(const float &k);
+        Tuple operator/=(const float &k);
         Tuple operator+=(const Tuple &b);
         Tuple operator-=(const Tuple &b);
 };
@@ -21,5 +26,6 @@ class Tuple
 bool operator==(const Tuple &a, const Tuple &b);
 Tuple point(float x, float y, float z);
 Tuple vector(float x, float y, float z);
+float magnitude(const Tuple &a);
 
 #endif
