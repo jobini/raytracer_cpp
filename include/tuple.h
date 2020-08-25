@@ -26,6 +26,7 @@ class Tuple
 bool operator==(const Tuple &a, const Tuple &b);
 Tuple point(float x, float y, float z);
 Tuple vector(float x, float y, float z);
+float dot(const Tuple &a, const Tuple &b);
 float magnitude(const Tuple &a);
 Tuple normalize(const Tuple &a);
 

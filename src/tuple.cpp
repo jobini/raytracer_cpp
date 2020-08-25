@@ -35,6 +35,10 @@ Tuple normalize(const Tuple &a){
                  a.w/magnitude(a));
 }
 
+float dot(const Tuple &a, const Tuple &b){
+    return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
+}
+
 bool operator==(const Tuple &a, const Tuple &b){
     return (std::abs(a.x - b.x) < EPSILON 
             && std::abs(a.y - b.y) < EPSILON
