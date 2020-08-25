@@ -181,10 +181,19 @@ TEST_CASE("The magnitude of a normalized vector"){
     }
 }
 
-TEST_CASE("Dot product of two tuples"){
+TEST_CASE("Dot product of two vectors"){
     GIVEN ("Two vectors a = (1, 2, 3) and b = (2, 3, 4)"){
         Tuple a = vector(1, 2, 3);
         Tuple b = vector(2, 3, 4);
         REQUIRE(dot(a, b) == Approx(20).margin(EPSILON));
+    }
+}
+
+TEST_CASE("Cross product of two vectors"){
+    GIVEN ("Two vectors a = (1, 2, 3) and b = (2, 3, 4)"){
+        Tuple a = vector(1, 2, 3);
+        Tuple b = vector(2, 3, 4);
+        REQUIRE(cross(a, b) == vector(-1, 2, -1));
+        REQUIRE(cross(b, a) == vector(1, -2, 1));
     }
 }

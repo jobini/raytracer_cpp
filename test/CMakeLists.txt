@@ -5,9 +5,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g -std=c++17")
 
 include_directories(../include)
 
-ADD_LIBRARY(Source
+ADD_LIBRARY(SourceTuple
     ../src/tuple.cpp
 )
 
 ADD_EXECUTABLE(TestsTuple tuple_tests.cpp)
-target_link_libraries(TestsTuple Source)
+target_link_libraries(TestsTuple SourceTuple)

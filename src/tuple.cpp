@@ -39,6 +39,12 @@ float dot(const Tuple &a, const Tuple &b){
     return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
 }
 
+Tuple cross(const Tuple &a, const Tuple &b){
+    return vector(a.y * b.z - b.y * a.z, 
+                  b.x * a.z - a.x * b.z, 
+                  a.x * b.y - b.x * a.y);
+}
+
 bool operator==(const Tuple &a, const Tuple &b){
     return (std::abs(a.x - b.x) < EPSILON 
             && std::abs(a.y - b.y) < EPSILON
@@ -46,40 +52,40 @@ bool operator==(const Tuple &a, const Tuple &b){
             && std::abs(a.w - b.w) < EPSILON);
 }
 
-Tuple Tuple::operator+(const Tuple &b){
+Tuple Tuple::operator+(const Tuple &b) const{
     return Tuple(this->x + b.x, this->y + b.y, this->z + b.z, this->w + b.w);
 }
 
-Tuple Tuple::operator-(const Tuple &b){
+Tuple Tuple::operator-(const Tuple &b) const{
     return Tuple(this->x - b.x, this->y - b.y, this->z - b.z, this->w - b.w);
 }
 
-Tuple Tuple::operator*(const float &k){
+Tuple Tuple::operator*(const float &k) const{
     return Tuple(k * this->x, k* this->y, k * this->z, k * this->w);
 }
 
-Tuple Tuple::operator/(const float &k){
+Tuple Tuple::operator/(const float &k) const{
     if (k == 0.0)
         throw "Division by 0 error!";
     return Tuple((1/k) * this->x, (1/k) * this->y, (1/k) * this->z, (1/k) * this->w);
 }
 
-Tuple Tuple::operator/=(const float &k){
+Tuple Tuple::operator/=(const float &k) const{
     return *this / k;
 }
 
-Tuple Tuple::operator*=(const float &k){
+Tuple Tuple::operator*=(const float &k) const{
     return *this * k;
 }
 
-Tuple Tuple::operator-(){
+Tuple Tuple::operator-() const{
     return Tuple(-this->x, -this->y, -this->z, -this->w);
 }
 
-Tuple Tuple::operator+=(const Tuple &b){
+Tuple Tuple::operator+=(const Tuple &b) const{
     return *this + b;
 }
 
-Tuple Tuple::operator-=(const Tuple &b){
+Tuple Tuple::operator-=(const Tuple &b) const{
     return *this - b;
 }
