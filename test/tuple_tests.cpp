@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "tuple.h"
+#include "color.h"
 #include "consts.h"
 #include <cmath>
 
@@ -195,5 +196,14 @@ TEST_CASE("Cross product of two vectors"){
         Tuple b = vector(2, 3, 4);
         REQUIRE(cross(a, b) == vector(-1, 2, -1));
         REQUIRE(cross(b, a) == vector(1, -2, 1));
+    }
+}
+
+TEST_CASE("Colors are (red, green, blue) tuples"){
+    GIVEN ("Given c = Color(-0.5, 0.4, 1.7)"){
+        Color c = Color(-0.5, 0.4, 1.7);
+        REQUIRE(c.red == Approx(-0.5).margin(EPSILON));
+        REQUIRE(c.green == Approx(0.4).margin(EPSILON));
+        REQUIRE(c.blue == Approx(1.7).margin(EPSILON));
     }
 }
