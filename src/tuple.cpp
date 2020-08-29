@@ -52,40 +52,40 @@ bool operator==(const Tuple &a, const Tuple &b){
             && std::abs(a.w - b.w) < EPSILON);
 }
 
-Tuple Tuple::operator+(const Tuple &b) const{
-    return Tuple(this->x + b.x, this->y + b.y, this->z + b.z, this->w + b.w);
+Tuple operator+(const Tuple &a, const Tuple &b){
+    return Tuple(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
 }
 
-Tuple Tuple::operator-(const Tuple &b) const{
-    return Tuple(this->x - b.x, this->y - b.y, this->z - b.z, this->w - b.w);
+Tuple operator-(const Tuple &a, const Tuple &b){
+    return Tuple(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
 }
 
-Tuple Tuple::operator*(const float &k) const{
-    return Tuple(k * this->x, k* this->y, k * this->z, k * this->w);
+Tuple operator*(const Tuple &a, const float &k){
+    return Tuple(k * a.x, k * a.y, k * a.z, k * a.w);
 }
 
-Tuple Tuple::operator/(const float &k) const{
+Tuple operator/(const Tuple &a, const float &k){
     if (k == 0.0)
         throw "Division by 0 error!";
-    return Tuple((1/k) * this->x, (1/k) * this->y, (1/k) * this->z, (1/k) * this->w);
+    return Tuple((1/k) * a.x, (1/k) * a.y, (1/k) * a.z, (1/k) * a.w);
 }
 
-Tuple Tuple::operator/=(const float &k) const{
-    return *this / k;
+Tuple operator/=(const Tuple &a, const float &k){
+    return a / k;
 }
 
-Tuple Tuple::operator*=(const float &k) const{
-    return *this * k;
+Tuple operator*=(const Tuple &a, const float &k){
+    return a * k;
 }
 
-Tuple Tuple::operator-() const{
-    return Tuple(-this->x, -this->y, -this->z, -this->w);
+Tuple operator-(const Tuple &a){
+    return Tuple(-a.x, -a.y, -a.z, -a.w);
 }
 
-Tuple Tuple::operator+=(const Tuple &b) const{
-    return *this + b;
+Tuple operator+=(const Tuple &a, const Tuple &b){
+    return a + b;
 }
 
-Tuple Tuple::operator-=(const Tuple &b) const{
-    return *this - b;
+Tuple operator-=(const Tuple &a, const Tuple &b){
+    return a - b;
 }

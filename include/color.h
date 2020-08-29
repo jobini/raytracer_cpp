@@ -3,7 +3,7 @@
 
 #include "tuple.h"
 
-class Color: private Tuple {
+class Color: public Tuple {
     public:
         Color(float r, float g, float b)
             : Tuple(r, g, b, 0)
@@ -13,5 +13,7 @@ class Color: private Tuple {
         float green;
         float blue;
 };
+
+Color operator*(const Color &a, const Color &b);
 
 #endif

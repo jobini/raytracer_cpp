@@ -12,17 +12,17 @@ class Tuple
         float y;
         float z;
         float w;
-        Tuple operator+(const Tuple &b) const;
-        Tuple operator-(const Tuple &b) const;
-        Tuple operator-() const;
-        Tuple operator*(const float &k) const;
-        Tuple operator/(const float &k) const;
-        Tuple operator*=(const float &k) const;
-        Tuple operator/=(const float &k) const;
-        Tuple operator+=(const Tuple &b) const;
-        Tuple operator-=(const Tuple &b) const;
 };
 
+Tuple operator+(const Tuple &a, const Tuple &b);
+Tuple operator-(const Tuple &a, const Tuple &b);
+Tuple operator-(const Tuple &a);
+Tuple operator*(const Tuple &a, const float &k);
+Tuple operator/(const Tuple &a, const float &k);
+Tuple operator*=(const Tuple &a, const float &k);
+Tuple operator/=(const Tuple &a, const float &k);
+Tuple operator+=(const Tuple &a, const Tuple &b);
+Tuple operator-=(const Tuple &a, const Tuple &b);
 bool operator==(const Tuple &a, const Tuple &b);
 Tuple point(float x, float y, float z);
 Tuple vector(float x, float y, float z);

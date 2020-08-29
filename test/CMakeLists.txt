@@ -7,6 +7,7 @@ include_directories(../include)
 
 ADD_LIBRARY(SourceTuple
     ../src/tuple.cpp
+    ../src/color.cpp
 )
 
 ADD_EXECUTABLE(TestsTuple tuple_tests.cpp)

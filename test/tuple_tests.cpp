@@ -80,6 +80,7 @@ TEST_CASE("Subtracting two vectors"){
         Tuple v2 = vector(5, 6, 7);
 
         REQUIRE((v1 - v2) == vector(-2, -4, -6));
+        REQUIRE((v1 -= v2) == vector(-2, -4, -6));
     }
 }
 
@@ -96,28 +97,31 @@ TEST_CASE("Negating a tuple"){
     GIVEN ("A tuple a = (1, -2, 3, -4)"){
         Tuple a = Tuple(1, -2, 3, -4);
 
-        REQUIRE(-a == Tuple(-1, 2, -3, 4));
+        REQUIRE((-a) == Tuple(-1, 2, -3, 4));
     }
 }
 
 TEST_CASE("Multiplying a tuple by a scalar"){
     GIVEN ("A tuple a = (1, -2, 3, -4)"){
         Tuple a = Tuple(1, -2, 3, -4);
-        REQUIRE(a * 3.5 == Tuple(3.5, -7, 10.5, -14));
+        REQUIRE((a * 3.5) == Tuple(3.5, -7, 10.5, -14));
+        REQUIRE((a *= 3.5) == Tuple(3.5, -7, 10.5, -14));
     }
 }
 
 TEST_CASE("Multiplying a tuple by a fraction"){
     GIVEN ("A tuple a = (1, -2, 3, -4)"){
         Tuple a = Tuple(1, -2, 3, -4);
-        REQUIRE(a * 0.5 == Tuple(0.5, -1, 1.5, -2));
+        REQUIRE((a * 0.5) == Tuple(0.5, -1, 1.5, -2));
+        REQUIRE((a *= 0.5) == Tuple(0.5, -1, 1.5, -2));
     }
 }
 
 TEST_CASE("Dividing a tuple by a scalar"){
     GIVEN ("A tuple a = (1, -2, 3, -4)"){
         Tuple a = Tuple(1, -2, 3, -4);
-        REQUIRE(a / 2 == Tuple(0.5, -1, 1.5, -2));
+        REQUIRE((a / 2) == Tuple(0.5, -1, 1.5, -2));
+        REQUIRE((a /= 2) == Tuple(0.5, -1, 1.5, -2));
     }
 }
 
@@ -205,5 +209,42 @@ TEST_CASE("Colors are (red, green, blue) tuples"){
         REQUIRE(c.red == Approx(-0.5).margin(EPSILON));
         REQUIRE(c.green == Approx(0.4).margin(EPSILON));
         REQUIRE(c.blue == Approx(1.7).margin(EPSILON));
+    }
+}
+
+TEST_CASE("Adding two colors"){
+    GIVEN ("Two colors c1 = (0.9, 0.6, 0.75) and c2 = (0.7, 0.1, 0.25)"){
+        Color c1 = Color(0.9, 0.6, 0.75);
+        Color c2 = Color(0.7, 0.1, 0.25);
+
+        REQUIRE((c1 + c2) == Color(1.6, 0.7, 1.0));
+        REQUIRE((c1 += c2) == Color(1.6, 0.7, 1.0));
+    }
+}
+
+TEST_CASE("Subtracting two colors"){
+    GIVEN ("Two colors c1 = (0.9, 0.6, 0.75) and c2 = (0.7, 0.1, 0.25)"){
+        Color c1 = Color(0.9, 0.6, 0.75);
+        Color c2 = Color(0.7, 0.1, 0.25);
+
+        REQUIRE((c1 - c2) == Color(0.2, 0.5, 0.5));
+        REQUIRE((c1 -= c2) == Color(0.2, 0.5, 0.5));
+    }
+}
+
+TEST_CASE("Multiplying a color by a scalar"){
+    GIVEN ("A color c = (0.2, 0.3, 0.4)"){
+        Color c = Color(0.2, 0.3, 0.4);
+
+        REQUIRE((c * 2) == Color(0.4, 0.6, 0.8));
+    }
+}
+
+TEST_CASE("Multiplying colors"){
+    GIVEN ("Two colors c1 = (1, 0.2, 0.4) and c2 = (0.9, 1, 0.1)"){
+        Color c1 = Color(1, 0.2, 0.4);
+        Color c2 = Color(0.9, 1, 0.1);
+
+        REQUIRE((c1 * c2) == Color(0.9, 0.2, 0.04));
     }
 }
