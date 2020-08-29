@@ -10,5 +10,16 @@ ADD_LIBRARY(SourceTuple
     ../src/color.cpp
 )
 
+ADD_LIBRARY(SourceCanvas
+    ../src/tuple.cpp
+    ../src/color.cpp
+    ../src/canvas.cpp
+)
+
 ADD_EXECUTABLE(TestsTuple tuple_tests.cpp)
 target_link_libraries(TestsTuple SourceTuple)
+
+ADD_EXECUTABLE(TestsCanvas canvas_tests.cpp)
+target_link_libraries(TestsCanvas SourceCanvas)
+
+

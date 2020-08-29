@@ -12,6 +12,7 @@ class Color: public Tuple {
         float red;
         float green;
         float blue;
+        Color& operator=(const Color &a);
 };
 
 Color operator*(const Color &a, const Color &b);

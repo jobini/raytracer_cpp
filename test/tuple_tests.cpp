@@ -5,7 +5,7 @@
 #include "consts.h"
 #include <cmath>
 
-TEST_CASE("A tuple with w = 1.0 is a point."){
+TEST_CASE("A tuple with w = 1.0 is a point"){
     GIVEN ("A tuple with w = 1.0"){
         Tuple a = Tuple(4.3, -4.2, 3.1, 1.0);
 
@@ -18,7 +18,7 @@ TEST_CASE("A tuple with w = 1.0 is a point."){
     }
 }
 
-TEST_CASE("A tuple with w = 0.0 is a vector."){
+TEST_CASE("A tuple with w = 0.0 is a vector"){
     GIVEN("A tuple with w = 0.0"){
         Tuple a = Tuple(4.3, -4.2, 3.1, 0.0);
 
