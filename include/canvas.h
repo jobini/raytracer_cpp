@@ -2,7 +2,10 @@
 #define CANVAS_H
 
 #include <vector>
+#include <string>
 #include "color.h"
+
+using std::string;
 
 class Canvas
 {
@@ -13,7 +16,9 @@ class Canvas
         unsigned width;
         unsigned height;
         std::vector<std::vector<Color>> pixels;
-        std::vector<Color>& operator[](size_t i);
+        std::vector<Color>& operator[](const size_t i);
+        string to_ppm(string filename);
+
 };
 
 

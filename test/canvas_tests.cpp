@@ -2,6 +2,10 @@
 #include "catch.hpp"
 #include "consts.h"
 #include "canvas.h"
+#include <string>
+#include <fstream>
+
+using std::string;
 
 TEST_CASE("Creating a canvas"){
     GIVEN ("A canvas c with width 10 and height 20 pixels"){
@@ -25,5 +29,25 @@ TEST_CASE("Writing pixels to a canvas"){
 
         c[2][3] = red;
         REQUIRE(c[2][3] == Color(1, 0, 0));
+    }
+}
+
+TEST_CASE("Constructing the PPM header"){
+    GIVEN ("A canvas c with width 5 and height 3 pixels"){
+        Canvas c = Canvas(5, 3);
+        c.to_ppm("test.ppm");
+        std::ifstream file(OUTPUT_DIR + "test.ppm");
+
+        string line;
+        string header;
+        int line_counter = 0;
+        while(std::getline(file, line)){
+            header += line.c_str();
+            header += "\n";
+            ++line_counter;
+            if (line_counter == 3)
+                break;
+        }
+        REQUIRE(header == "P3\n5 3\n255\n");
     }
 }
