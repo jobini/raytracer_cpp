@@ -16,7 +16,7 @@ TEST_CASE("Creating a canvas"){
         
         for(size_t i = 0; i < c.height; ++i){
             for (size_t j = 0; j < c.width; ++j){
-                REQUIRE(c.pixels[i][j] == Color(0, 0, 0));
+                REQUIRE(c[i][j] == Color(0, 0, 0));
             }
         }
     }

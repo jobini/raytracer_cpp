@@ -10,7 +10,7 @@ using std::string;
 std::vector<Color>& Canvas::operator[](const size_t i){
     if (i >= height)
         throw "Out of bounds of canvas!";
-    return this->pixels[i];
+    return this->_pixels[i];
 }
 
 int clamp(float val){

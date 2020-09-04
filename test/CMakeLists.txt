@@ -16,10 +16,17 @@ ADD_LIBRARY(SourceCanvas
     ../src/canvas.cpp
 )
 
+ADD_LIBRARY(SourceMatrix
+    ../src/matrix.cpp
+)
+
 ADD_EXECUTABLE(TestsTuple tuple_tests.cpp)
 target_link_libraries(TestsTuple SourceTuple)
 
 ADD_EXECUTABLE(TestsCanvas canvas_tests.cpp)
 target_link_libraries(TestsCanvas SourceCanvas)
+
+ADD_EXECUTABLE(TestsMatrix matrix_tests.cpp)
+target_link_libraries(TestsMatrix SourceMatrix)
 
 

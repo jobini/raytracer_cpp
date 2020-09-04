@@ -4,6 +4,11 @@
 #include "tuple.h"
 
 class Color: public Tuple {
+    private:
+        using Tuple::x;
+        using Tuple::y;
+        using Tuple::z;
+        using Tuple::w;
     public:
         Color(float r, float g, float b)
             : Tuple(r, g, b, 0)
