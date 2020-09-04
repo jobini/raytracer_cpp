@@ -28,3 +28,13 @@ TEST_CASE("A 2x2 matrix ought to be representable"){
     }
 }
 
+TEST_CASE("A 3x3 matrix ought to be representable"){
+    GIVEN("A 3x3 matrix M"){
+        Matrix M = {{-3, 5, 0}, {1, -2, -7}, {0, 1, 1}};
+
+        REQUIRE(M[0][0] == Approx(-3).margin(EPSILON));
+        REQUIRE(M[1][1] == Approx(-2).margin(EPSILON));
+        REQUIRE(M[2][2] == Approx(1).margin(EPSILON));
+    }
+}
+
