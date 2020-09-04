@@ -124,8 +124,7 @@ TEST_CASE("PPM files are terminated by a new line"){
 
         string line;
         string last_line;
-        while(std::getline(file, line)){
-        }
+        while(std::getline(file, line)){}
         last_line = line + "\n";
         REQUIRE(last_line == "\n");
     }

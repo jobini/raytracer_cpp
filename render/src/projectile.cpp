@@ -2,9 +2,8 @@
 #include "tuple.h"
 #include "projectile.h"
 #include "environment.h"
-
-using std::cout;
-using std::endl;
+#include "canvas.h"
+#include "color.h"
 
 Projectile tick(const Projectile &proj, const Environment &env){
     Tuple new_position = proj.position + proj.velocity;
@@ -14,18 +13,23 @@ Projectile tick(const Projectile &proj, const Environment &env){
 
 int main()
 {
-    Projectile p = Projectile(point(0, 1, 0), normalize(vector(1, 1, 0)));
-    Environment e = Environment(vector(0, -0.1, 0), vector(-0.01, 0, 0));
+    try{
+        Projectile p = Projectile(point(0, 1, 0), normalize(vector(1, 1.8, 0)) * 11.25);
+        Environment e = Environment(vector(0, -0.1, 0), vector(-0.01, 0, 0));
 
-    int tick_count = 0;
-    while(p.position.y >= 0)
-    {
-        cout << "Current position: (" + std::to_string(p.position.x) + ", " + 
-                                        std::to_string(p.position.y) + ", " + 
-                                        std::to_string(p.position.z) + ", " + 
-                                        std::to_string(p.position.w) + ")" << endl;
-        p = tick(p, e);
-        tick_count += 1;
+        int width = 900;
+        int height = 550;
+
+        Canvas c(width, height);
+
+        while((p.position.y >= 0 && p.position.y <= height) && (p.position.x >= 0 && p.position.x <= width))
+        {
+            c[int(height - p.position.y)][int(p.position.x)] = Color((rand() % 256)/255., (rand() % 256)/255., (rand() % 256)/255.);
+            p = tick(p, e);
+        }
+        c.to_ppm("projectile.ppm");
     }
-    cout << "Ticks: " << tick_count << endl;
+    catch(char const *msg){
+        std::cout << msg << std::endl;
+    }
 }

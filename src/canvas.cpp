@@ -8,6 +8,8 @@
 using std::string;
 
 std::vector<Color>& Canvas::operator[](const size_t i){
+    if (i >= height)
+        throw "Out of bounds of canvas!";
     return this->pixels[i];
 }
 
@@ -20,7 +22,8 @@ int clamp(float val){
 }
 
 string Canvas::to_ppm(string filename){
-    string ppm = "P3\n" + std::to_string(this->width) + " " + std::to_string(this->height) + "\n255\n";
+    string ppm = "P3\n" + std::to_string(this->width) 
+                 + " " + std::to_string(this->height) + "\n255\n";
     string line = "";
     size_t future_line_size = 0;
     for (size_t i = 0; i < this->height; ++i){
@@ -29,10 +32,12 @@ string Canvas::to_ppm(string filename){
         for (size_t j = 0; j < this->width; ++j){
             for (size_t k = 0; k < 3; ++k){
                 if (line.size() == 0){
-                    future_line_size = line.size() + (std::to_string(clamp(std::ceil((*this)[i][j][k] * 255)))).size();
+                    future_line_size = line.size() 
+                    + (std::to_string(clamp(std::ceil((*this)[i][j][k] * 255)))).size();
                 }
                 else
-                    future_line_size = line.size() + (" " + std::to_string(clamp(std::ceil((*this)[i][j][k] * 255)))).size();
+                    future_line_size = line.size() 
+                                       + (" " + std::to_string(clamp(std::ceil((*this)[i][j][k] * 255)))).size();
                 
                 if (future_line_size <= 70){
                     if (line.size() == 0)

@@ -7,7 +7,10 @@ include_directories(../include
                     ./include)
 
 ADD_LIBRARY(SourceTuple
-            ../src/tuple.cpp)
+            ../src/tuple.cpp
+            ../src/canvas.cpp
+            ../src/color.cpp
+            )
 
 ADD_EXECUTABLE(Projectile ./src/projectile.cpp)
 target_link_libraries(Projectile SourceTuple)
