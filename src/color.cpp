@@ -5,7 +5,7 @@ Color operator*(const Color &a, const Color &b){
     return Color(a.red * b.red, a.green * b.green, a.blue * b.blue);
 }
 
-float& Color::operator[](const unsigned i){
+float& Color::operator[](const size_t i){
     if (i == 0)
         return this->red;
     if (i == 1)

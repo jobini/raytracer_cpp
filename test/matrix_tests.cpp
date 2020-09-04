@@ -38,3 +38,44 @@ TEST_CASE("A 3x3 matrix ought to be representable"){
     }
 }
 
+TEST_CASE("Matrix equality with identical matrices"){
+    GIVEN("Two matrices A and B"){
+        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
+        Matrix B = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
+
+        REQUIRE(A == B);
+    }
+}
+
+TEST_CASE("Matrix equality with different matrices"){
+    GIVEN("Two matrices A and B"){
+        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
+        Matrix B = {{2, 3, 4, 5}, {6, 7, 8, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+
+        REQUIRE(A != B);
+    }
+}
+
+TEST_CASE("Matrix equality with matrices having different number of rows"){
+    GIVEN("Two matrices A and B"){
+        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
+        Matrix B = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}};
+
+        REQUIRE(A != B);
+    }
+}
+
+TEST_CASE("Matrix equality with matrices having different number of columns"){
+    GIVEN("Two matrices A and B"){
+        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
+        Matrix B = {{1, 2, 3}, {5, 6, 7}, {9, 8, 7}, {5, 4, 3}};
+
+        REQUIRE(A != B);
+    }
+}
+
+TEST_CASE("Ill-formed matrix exception is raised"){
+    GIVEN("A matrix A with unequal number of columns"){
+        Matrix A = {{1, 2}, {3, 4, 5}};
+    }
+}

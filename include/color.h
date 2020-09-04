@@ -2,6 +2,7 @@
 #define COLOR_H
 
 #include "tuple.h"
+#include <cstddef>
 
 class Color: public Tuple {
     private:
@@ -18,7 +19,7 @@ class Color: public Tuple {
         float green;
         float blue;
         Color& operator=(const Color &a);
-        float& operator[](const unsigned i);
+        float& operator[](const size_t i);
 };
 
 Color operator*(const Color &a, const Color &b);
