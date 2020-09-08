@@ -3,24 +3,24 @@
 #include <cmath>
 
 vector<float>& Matrix::operator[](const size_t i){
-    if (i >= _outer_vec.size())
+    if (i >= _matrix.size())
         throw "Out of bounds of matrix!";
-    return this->_outer_vec[i];
+    return this->_matrix[i];
 }
 
 const vector<float>& Matrix::operator[](const size_t i) const{
-    if (i >= _outer_vec.size())
+    if (i >= _matrix.size())
         throw "Out of bounds of matrix!";
-    return this->_outer_vec[i];
+    return this->_matrix[i];
 }
 
 bool operator==(const Matrix &A, const Matrix &B){
-    if (A._outer_vec.size() != B._outer_vec.size())
+    if (A.shape[0] != B.shape[0])
         return false;
-    if (A._inner_vec.size() != B._inner_vec.size())
+    if (A.shape[1] != B.shape[1])
         return false;
-    for (size_t i = 0; i < A._outer_vec.size(); ++i){
-        for (size_t j = 0; j < A._inner_vec.size(); ++j){
+    for (size_t i = 0; i < A.shape[0]; ++i){
+        for (size_t j = 0; j < A.shape[1]; ++j){
             if (std::abs(A[i][j] - B[i][j]) >= EPSILON)
                 return false;
         }
