@@ -6,30 +6,29 @@ class Matrix{
     private:
         vector<vector<float>> _matrix;
     public:
-        Matrix(std::initializer_list<std::initializer_list<float>> arg){
+        Matrix(vector<vector<float>> arg){
             if (arg.size() == 0)
                 throw "Ill-formed matrix!";
             size_t prev_size = arg.begin()->size();
             if (prev_size == 0)
                 throw "Ill-formed matrix!";
-            for (auto &inner_vec: arg){
+            for (const auto &inner_vec: arg){
                 if (inner_vec.size() != prev_size)
                     throw "Ill-formed matrix!";
             }
-            _matrix.resize(arg.size(), vector<float>(arg.begin()->size(), 0));
 
-            for (size_t i = 0; i < arg.size(); ++i){
-                for (size_t j = 0; j < arg.begin()->size(); ++j){
-                    _matrix[i][j] = *((*(arg.begin() + i)).begin() + j);
-                }
-            }
+            _matrix = arg;
+            shape = {};
             shape.push_back(arg.size());
             shape.push_back(arg.begin()->size());
         }
+        Matrix(std::initializer_list<std::initializer_list<float>> arg) : 
+                Matrix(vector<vector<float>>(arg.begin(), arg.end())) {};
+        Matrix mm(const Matrix &B) const;
+        Matrix transpose() const;
         vector<float>& operator[](const size_t i);
-        vector<size_t> shape;
+        vector<float> shape;
         const vector<float>& operator[](const size_t i) const;
-        Matrix mm(const Matrix &A);
 };
 
 bool operator==(const Matrix &A, const Matrix &B);
