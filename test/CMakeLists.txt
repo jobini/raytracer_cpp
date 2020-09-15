@@ -18,6 +18,7 @@ ADD_LIBRARY(SourceCanvas
 
 ADD_LIBRARY(SourceMatrix
     ../src/matrix.cpp
+    ../src/tuple.cpp
 )
 
 ADD_EXECUTABLE(TestsTuple tuple_tests.cpp)

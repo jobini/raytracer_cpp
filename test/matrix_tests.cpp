@@ -2,6 +2,9 @@
 #include "catch.hpp"
 #include "matrix.h"
 #include "consts.h"
+#include "tuple.h"
+
+using TupleClass::Tuple;
 
 TEST_CASE("Constructing and inspecting a 4x4 matrix"){
     GIVEN("A 4x4 matrix M"){
@@ -88,5 +91,14 @@ TEST_CASE("Multiplying two matrices (uneven dimensions)"){
         Matrix B = {{7, 8}, {-9, -10}, {11, 12}};
         Matrix C = A.mm(B);
         REQUIRE(A.mm(B) == Matrix({{22, 24}, {-49, -54}}));
+    }
+}
+
+TEST_CASE("Multiplying a matrix with a tuple"){
+    GIVEN("A matrices A and a Tuple t"){
+        Matrix A = {{1, 2, 3, 4}, {2, 4, 4, 2}, {8, 6, 4, 1}, {0, 0, 0, 1}};
+        Tuple t(1, 2, 3, 1);
+        Tuple C = A.mm(t);
+        REQUIRE(C == Tuple(18, 24, 33, 1));
     }
 }

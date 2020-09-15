@@ -2,6 +2,8 @@
 #include "consts.h"
 #include <cmath>
 
+using std::vector;
+
 vector<float>& Matrix::operator[](const size_t i){
     if (i >= _matrix.size())
         throw "Out of bounds of matrix!";
@@ -67,4 +69,10 @@ Matrix Matrix::mm(const Matrix &B) const{
         }
     }
     return Matrix(prod);
+}
+
+Tuple Matrix::mm(const Tuple &t) const{
+    const Matrix B = {{t.x}, {t.y}, {t.z}, {t.w}};
+    const Matrix C = this->mm(B);
+    return Tuple(C[0][0], C[1][0], C[2][0], C[3][0]);
 }

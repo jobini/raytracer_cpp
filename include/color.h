@@ -4,6 +4,8 @@
 #include "tuple.h"
 #include <cstddef>
 
+using TupleClass::Tuple;
+
 class Color: public Tuple {
     private:
         using Tuple::x;

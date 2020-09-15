@@ -1,6 +1,8 @@
 #include <vector>
+#include "tuple.h"
 
 using std::vector;
+using TupleClass::Tuple;
 
 class Matrix{
     private:
@@ -25,6 +27,7 @@ class Matrix{
         Matrix(std::initializer_list<std::initializer_list<float>> arg) : 
                 Matrix(vector<vector<float>>(arg.begin(), arg.end())) {};
         Matrix mm(const Matrix &B) const;
+        Tuple mm(const Tuple &B) const;
         Matrix transpose() const;
         vector<float>& operator[](const size_t i);
         vector<float> shape;
