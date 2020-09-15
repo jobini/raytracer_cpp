@@ -115,3 +115,11 @@ TEST_CASE("Transposing a matrix"){
         REQUIRE(A.transpose() == Matrix({{0, 9, 1, 0}, {9, 8, 8, 0}, {3, 0, 5, 5}, {0, 8, 3, 8}}));
     }
 }
+
+TEST_CASE("Transposing the identity matrix"){
+    GIVEN("The identity matrix"){
+        Matrix identity_matrix = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0},{0, 0, 0, 1}};
+        REQUIRE(identity_matrix.transpose() == identity_matrix);
+    }
+}
+
