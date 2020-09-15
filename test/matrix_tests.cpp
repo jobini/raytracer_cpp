@@ -89,7 +89,6 @@ TEST_CASE("Multiplying two matrices (uneven dimensions)"){
     GIVEN("Two matrices A and B"){
         Matrix A = {{1, 2, 3}, {-4, -5, -6}};
         Matrix B = {{7, 8}, {-9, -10}, {11, 12}};
-        Matrix C = A.mm(B);
         REQUIRE(A.mm(B) == Matrix({{22, 24}, {-49, -54}}));
     }
 }
@@ -98,7 +97,15 @@ TEST_CASE("Multiplying a matrix with a tuple"){
     GIVEN("A matrices A and a Tuple t"){
         Matrix A = {{1, 2, 3, 4}, {2, 4, 4, 2}, {8, 6, 4, 1}, {0, 0, 0, 1}};
         Tuple t(1, 2, 3, 1);
-        Tuple C = A.mm(t);
-        REQUIRE(C == Tuple(18, 24, 33, 1));
+        REQUIRE(A.mm(t) == Tuple(18, 24, 33, 1));
     }
 }
+
+TEST_CASE("Multiplying a matrix with the identity matrix"){
+    GIVEN("A matrices A and the identity matrix"){
+        Matrix A = {{0, 1, 2, 4}, {1, 2, 4, 8}, {2, 4, 8, 16}, {4, 8, 16, 32}};
+        Matrix identity_matrix = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0},{0, 0, 0, 1}};
+        REQUIRE(A.mm(identity_matrix) == A);
+    }
+}
+
