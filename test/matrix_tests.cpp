@@ -109,3 +109,9 @@ TEST_CASE("Multiplying a matrix with the identity matrix"){
     }
 }
 
+TEST_CASE("Transposing a matrix"){
+    GIVEN("A matrices A"){
+        Matrix A = {{0, 9, 3, 0}, {9, 8, 0, 8}, {1, 8, 5, 3}, {0, 0, 5, 8}};
+        REQUIRE(A.transpose() == Matrix({{0, 9, 1, 0}, {9, 8, 8, 0}, {3, 0, 5, 5}, {0, 8, 3, 8}}));
+    }
+}
