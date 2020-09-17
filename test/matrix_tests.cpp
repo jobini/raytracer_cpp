@@ -123,3 +123,16 @@ TEST_CASE("Transposing the identity matrix"){
     }
 }
 
+TEST_CASE("Calculating the determinant of a 2x2 matrix"){
+    GIVEN("A 2x2 matrix"){
+        Matrix A = {{1, 5}, {-3, 2}};
+        REQUIRE(determinant(A) == 17);
+    }
+}
+
+TEST_CASE("A submatrix of a 3x3 matrix is a 2x2 matrix"){
+    GIVEN("A 3x3 matrix"){
+        Matrix A = {{1, 5, 0}, {-3, 2, 7}, {0, 6, -3}};
+        REQUIRE(A.submatrix(0, 2) == Matrix({{-3, 2}, {0, 6}}));
+    }
+}

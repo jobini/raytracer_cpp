@@ -18,21 +18,19 @@ class Matrix{
                 if (inner_vec.size() != prev_size)
                     throw "Ill-formed matrix!";
             }
-
             _matrix = arg;
-            shape = {};
-            shape.push_back(arg.size());
-            shape.push_back(arg.begin()->size());
         }
         Matrix(std::initializer_list<std::initializer_list<float>> arg) : 
                 Matrix(vector<vector<float>>(arg.begin(), arg.end())) {};
         Matrix mm(const Matrix &B) const;
         Tuple mm(const Tuple &B) const;
+        Matrix submatrix(size_t row_index, size_t col_index) const;
         Matrix transpose() const;
         vector<float>& operator[](const size_t i);
-        vector<float> shape;
+        vector<size_t> shape() const;
         const vector<float>& operator[](const size_t i) const;
 };
 
 bool operator==(const Matrix &A, const Matrix &B);
 bool operator!=(const Matrix &A, const Matrix &B);
+float determinant(const Matrix &A);
