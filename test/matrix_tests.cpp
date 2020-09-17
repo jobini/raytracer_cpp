@@ -136,3 +136,10 @@ TEST_CASE("A submatrix of a 3x3 matrix is a 2x2 matrix"){
         REQUIRE(A.submatrix(0, 2) == Matrix({{-3, 2}, {0, 6}}));
     }
 }
+
+TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix"){
+    GIVEN("A 4x4 matrix"){
+        Matrix A = {{-6, 1, 1, 6}, {-8, 5, 8, 6}, {-1, 0, 8, 2}, {-7, 1, -1, 1}};
+        REQUIRE(A.submatrix(2, 1) == Matrix({{-6, 1, 6}, {-8, 8, 6}, {-7, -1, 1}}));
+    }
+}
