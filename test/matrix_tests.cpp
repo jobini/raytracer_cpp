@@ -5,6 +5,8 @@
 #include "tuple.h"
 
 using TupleClass::Tuple;
+using MatrixClass::Matrix;
+using MatrixClass::minor;
 
 TEST_CASE("Constructing and inspecting a 4x4 matrix"){
     GIVEN("A 4x4 matrix M"){
@@ -141,5 +143,14 @@ TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix"){
     GIVEN("A 4x4 matrix"){
         Matrix A = {{-6, 1, 1, 6}, {-8, 5, 8, 6}, {-1, 0, 8, 2}, {-7, 1, -1, 1}};
         REQUIRE(A.submatrix(2, 1) == Matrix({{-6, 1, 6}, {-8, 8, 6}, {-7, -1, 1}}));
+    }
+}
+
+TEST_CASE("Calculating a minor of a 3x3 matrix"){
+    GIVEN("A 3x3 matrix A and one of its submatrices B"){
+        Matrix A = {{3, 5, 0}, {2, -1, 7}, {6, -1, 5}};
+        Matrix B = A.submatrix(1, 0);
+        REQUIRE(determinant(B) == 25);
+        REQUIRE(minor(A, 1, 0) == 25);
     }
 }

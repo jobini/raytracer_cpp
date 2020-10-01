@@ -3,7 +3,6 @@
 #include <cmath>
 
 namespace TupleClass{
-
     bool Tuple::isPoint(){
         if (this->w == 1.0)
             return true;
