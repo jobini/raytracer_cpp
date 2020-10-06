@@ -30,10 +30,12 @@ namespace MatrixClass{
             vector<float>& operator[](const size_t i);
             vector<size_t> shape() const;
             const vector<float>& operator[](const size_t i) const;
+            void print() const;
     };
 
     bool operator==(const Matrix &A, const Matrix &B);
     bool operator!=(const Matrix &A, const Matrix &B);
     float determinant(const Matrix &A);
     float minor(const Matrix &A, size_t row_index, size_t col_index);
+    float cofactor(const Matrix &A, size_t row_index, size_t col_index);
 }

@@ -7,6 +7,7 @@
 using TupleClass::Tuple;
 using MatrixClass::Matrix;
 using MatrixClass::minor;
+using MatrixClass::cofactor;
 
 TEST_CASE("Constructing and inspecting a 4x4 matrix"){
     GIVEN("A 4x4 matrix M"){
@@ -128,7 +129,7 @@ TEST_CASE("Transposing the identity matrix"){
 TEST_CASE("Calculating the determinant of a 2x2 matrix"){
     GIVEN("A 2x2 matrix"){
         Matrix A = {{1, 5}, {-3, 2}};
-        REQUIRE(determinant(A) == 17);
+        REQUIRE(determinant(A) == Approx(17).margin(EPSILON));
     }
 }
 
@@ -150,7 +151,18 @@ TEST_CASE("Calculating a minor of a 3x3 matrix"){
     GIVEN("A 3x3 matrix A and one of its submatrices B"){
         Matrix A = {{3, 5, 0}, {2, -1, 7}, {6, -1, 5}};
         Matrix B = A.submatrix(1, 0);
-        REQUIRE(determinant(B) == 25);
-        REQUIRE(minor(A, 1, 0) == 25);
+        REQUIRE(determinant(B) == Approx(25).margin(EPSILON));
+        REQUIRE(minor(A, 1, 0) == Approx(25).margin(EPSILON));
+    }
+}
+
+TEST_CASE("Calculating a cofactor of a 3x3 matrix"){
+    GIVEN("A 3x3 matrix A"){
+        Matrix A = {{3, 5, 0}, {2, -1, -7}, {6, -1, 5}};
+        
+        REQUIRE(minor(A, 0, 0) == Approx(-12).margin(EPSILON));
+        REQUIRE(cofactor(A, 0, 0) == Approx(-12).margin(EPSILON));
+        REQUIRE(minor(A, 1, 0) == Approx(25).margin(EPSILON));
+        REQUIRE(cofactor(A, 1, 0) == Approx(-25).margin(EPSILON));
     }
 }

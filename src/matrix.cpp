@@ -1,6 +1,7 @@
 #include "matrix.h"
 #include "consts.h"
 #include <cmath>
+#include <iostream>
 
 using std::vector;
 
@@ -95,6 +96,23 @@ namespace MatrixClass{
 
     float minor(const Matrix &A, size_t row_index, size_t col_index){
         return determinant(A.submatrix(row_index, col_index));
+    }
+
+    float cofactor(const Matrix &A, size_t row_index, size_t col_index){
+        return pow(-1, row_index + col_index) * minor(A, row_index, col_index);
+    }
+
+    void Matrix::print() const{
+        for (size_t i = 0; i < this->shape()[0]; ++i){
+            std::cout << "|";
+            for (size_t j = 0; j < this->shape()[1]; ++j){
+                if (j != this->shape()[1] - 1)
+                    std::cout << this->operator[](i)[j] << " ";
+                else
+                    std::cout << this->operator[](i)[j];
+            }
+            std::cout << "|" << std::endl;
+        }
     }
 
     Matrix Matrix::submatrix(size_t row_index, size_t col_index) const{
