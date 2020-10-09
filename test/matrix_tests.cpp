@@ -177,3 +177,15 @@ TEST_CASE("Calculating the determinant of a 3x3 matrix"){
         REQUIRE(determinant(A) == Approx(-196).margin(EPSILON));
     }
 }
+
+TEST_CASE("Calculating the determinant of a 4x4 matrix"){
+    GIVEN("A 3x3 matrix A"){
+        Matrix A = {{-2, -8, 3, 5}, {-3, 1, 7, 3}, {1, 2, -9, 6}, {-6, 7, 7, -9}};
+        
+        REQUIRE(cofactor(A, 0, 0) == Approx(690).margin(EPSILON));
+        REQUIRE(cofactor(A, 0, 1) == Approx(447).margin(EPSILON));
+        REQUIRE(cofactor(A, 0, 2) == Approx(210).margin(EPSILON));
+        REQUIRE(cofactor(A, 0, 3) == Approx(51).margin(EPSILON));
+        REQUIRE(determinant(A) == Approx(-4071).margin(EPSILON));
+    }
+}
