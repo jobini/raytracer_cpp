@@ -166,3 +166,14 @@ TEST_CASE("Calculating a cofactor of a 3x3 matrix"){
         REQUIRE(cofactor(A, 1, 0) == Approx(-25).margin(EPSILON));
     }
 }
+
+TEST_CASE("Calculating the determinant of a 3x3 matrix"){
+    GIVEN("A 3x3 matrix A"){
+        Matrix A = {{1, 2, 6}, {-5, 8, -4}, {2, 6, 4}};
+        
+        REQUIRE(cofactor(A, 0, 0) == Approx(56).margin(EPSILON));
+        REQUIRE(cofactor(A, 0, 1) == Approx(12).margin(EPSILON));
+        REQUIRE(cofactor(A, 0, 2) == Approx(-46).margin(EPSILON));
+        REQUIRE(determinant(A) == Approx(-196).margin(EPSILON));
+    }
+}

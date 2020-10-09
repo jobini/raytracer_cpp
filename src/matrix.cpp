@@ -91,7 +91,13 @@ namespace MatrixClass{
             return A[0][0];
         if (A.shape()[0] == 2)
             return (A[0][0] * A[1][1] - A[0][1] * A[1][0]);
-        throw "Not implemented for 3x3 and higher matrices!";
+        else{
+            float det = 0;
+            for (size_t j = 0; j < A.shape()[1]; ++j){
+                det += A[0][j] * cofactor(A, 0, j);
+            }
+            return det;
+        }
     }
 
     float minor(const Matrix &A, size_t row_index, size_t col_index){
