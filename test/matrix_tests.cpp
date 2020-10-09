@@ -197,3 +197,11 @@ TEST_CASE("Testing an invertible matrix for invertibility"){
         REQUIRE(A.is_invertible());
     }
 }
+
+TEST_CASE("Testing a non-invertible matrix for invertibility"){
+    GIVEN("A 4x4 matrix A"){
+        Matrix A = {{-4, 2, -2, -3}, {9, 6, 2, 6}, {0, -5, 1, -5}, {0, 0, 0, 0}};
+        REQUIRE(determinant(A) == Approx(0).margin(EPSILON));
+        REQUIRE(!A.is_invertible());
+    }
+}
