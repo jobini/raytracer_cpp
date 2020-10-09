@@ -31,6 +31,7 @@ namespace MatrixClass{
             vector<size_t> shape() const;
             const vector<float>& operator[](const size_t i) const;
             void print() const;
+            bool is_invertible() const;
     };
 
     bool operator==(const Matrix &A, const Matrix &B);

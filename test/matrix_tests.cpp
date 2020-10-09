@@ -189,3 +189,11 @@ TEST_CASE("Calculating the determinant of a 4x4 matrix"){
         REQUIRE(determinant(A) == Approx(-4071).margin(EPSILON));
     }
 }
+
+TEST_CASE("Testing an invertible matrix for invertibility"){
+    GIVEN("A 4x4 matrix A"){
+        Matrix A = {{6, 4, 4, 4}, {5, 5, 7, 6}, {4, -9, 3, -7}, {9, 1, 7, -6}};
+        REQUIRE(determinant(A) == Approx(-2120).margin(EPSILON));
+        REQUIRE(A.is_invertible());
+    }
+}

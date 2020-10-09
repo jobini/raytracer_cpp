@@ -130,4 +130,12 @@ namespace MatrixClass{
         sub._matrix.erase(sub._matrix.begin() + col_index);
         return sub.transpose();
     }
+
+    bool Matrix::is_invertible() const{
+        if (this->shape()[0] != this->shape()[1])
+            return false;
+        if (determinant(*this) == 0)
+            return false;
+        return true;
+    }
 }
