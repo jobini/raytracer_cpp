@@ -138,4 +138,21 @@ namespace MatrixClass{
             return false;
         return true;
     }
+
+    Matrix inverse(const Matrix &A){
+        if (!A.is_invertible())
+            throw "Matrix not invertible!";
+
+        vector<vector<float>> inv_vec;
+        inv_vec.resize(A.shape()[0], vector<float>(A.shape()[1], 0));
+        Matrix inv = Matrix(inv_vec);
+        float det = determinant(A);
+
+        for (size_t i = 0; i < A.shape()[0]; ++i){
+            for (size_t j = 0; j < A.shape()[1]; ++j){
+                inv[j][i] = cofactor(A, i, j)/det;
+            }
+        }
+        return inv;
+    }
 }

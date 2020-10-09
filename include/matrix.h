@@ -39,4 +39,5 @@ namespace MatrixClass{
     float determinant(const Matrix &A);
     float minor(const Matrix &A, size_t row_index, size_t col_index);
     float cofactor(const Matrix &A, size_t row_index, size_t col_index);
+    Matrix inverse(const Matrix &A);
 }

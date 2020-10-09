@@ -205,3 +205,19 @@ TEST_CASE("Testing a non-invertible matrix for invertibility"){
         REQUIRE(!A.is_invertible());
     }
 }
+
+TEST_CASE("Calculating the inverse of a matrix"){
+    GIVEN("A 4x4 matrix A"){
+        Matrix A = {{-5, 2, 6, -8}, {1, -5, 1, 8}, {7, 7, -6, -7}, {1, -3, 7, 4}};
+        Matrix B = inverse(A);
+        REQUIRE(determinant(A) == Approx(532).margin(EPSILON));
+        REQUIRE(cofactor(A, 2, 3) == Approx(-160).margin(EPSILON));
+        REQUIRE(B[3][2] == Approx(-160/532.).margin(EPSILON));
+        REQUIRE(cofactor(A, 3, 2) == Approx(105).margin(EPSILON));
+        REQUIRE(B[2][3] == Approx(105/532.).margin(EPSILON));
+        REQUIRE(B == Matrix({{0.21805, 0.45113, 0.24060, -0.04511}, 
+                             {-0.80827, -1.45677, -0.44361, 0.52068}, 
+                             {-0.07895, -0.22368, -0.05263, 0.19737},
+                             {-0.52256, -0.81391, -0.30075, 0.30639}}));
+    }
+}
