@@ -1,9 +1,11 @@
 #include "matrix.h"
 #include "consts.h"
+#include "tuple.h"
 #include <cmath>
 #include <iostream>
 
 using std::vector;
+using TupleClass::Tuple;
 
 namespace MatrixClass{
     

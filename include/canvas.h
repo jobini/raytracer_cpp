@@ -5,8 +5,6 @@
 #include <string>
 #include "color.h"
 
-using std::string;
-
 class Canvas
 {
     private:
@@ -18,9 +16,7 @@ class Canvas
         size_t width;
         size_t height;
         std::vector<Color>& operator[](const size_t i);
-        string to_ppm(string filename);
+        std::string to_ppm(std::string filename);
 };
-
-
 
 #endif

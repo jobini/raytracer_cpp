@@ -8,10 +8,10 @@ using TupleClass::Tuple;
 
 class Color: public Tuple {
     private:
-        using Tuple::x;
-        using Tuple::y;
-        using Tuple::z;
-        using Tuple::w;
+        using TupleClass::Tuple::x;
+        using TupleClass::Tuple::y;
+        using TupleClass::Tuple::z;
+        using TupleClass::Tuple::w;
     public:
         Color(float r, float g, float b)
             : Tuple(r, g, b, 0)

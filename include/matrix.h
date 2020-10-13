@@ -4,15 +4,12 @@
 #include <vector>
 #include "tuple.h"
 
-using std::vector;
-using TupleClass::Tuple;
-
 namespace MatrixClass{
     class Matrix{
         private:
-            vector<vector<float>> _matrix;
+            std::vector<std::vector<float>> _matrix;
         public:
-            Matrix(vector<vector<float>> arg){
+            Matrix(std::vector<std::vector<float>> arg){
                 if (arg.size() == 0)
                     throw "Ill-formed matrix!";
                 size_t prev_size = arg.begin()->size();
@@ -25,14 +22,14 @@ namespace MatrixClass{
                 _matrix = arg;
             }
             Matrix(std::initializer_list<std::initializer_list<float>> arg) : 
-                    Matrix(vector<vector<float>>(arg.begin(), arg.end())) {};
+                    Matrix(std::vector<std::vector<float>>(arg.begin(), arg.end())) {};
             Matrix mm(const Matrix &B) const;
-            Tuple mm(const Tuple &B) const;
+            TupleClass::Tuple mm(const TupleClass::Tuple &B) const;
             Matrix submatrix(size_t row_index, size_t col_index) const;
             Matrix transpose() const;
-            vector<float>& operator[](const size_t i);
-            vector<size_t> shape() const;
-            const vector<float>& operator[](const size_t i) const;
+            std::vector<float>& operator[](const size_t i);
+            std::vector<size_t> shape() const;
+            const std::vector<float>& operator[](const size_t i) const;
             void print() const;
             bool is_invertible() const;
     };
@@ -44,4 +41,5 @@ namespace MatrixClass{
     float cofactor(const Matrix &A, size_t row_index, size_t col_index);
     Matrix inverse(const Matrix &A);
 }
+
 #endif

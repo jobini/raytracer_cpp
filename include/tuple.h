@@ -32,4 +32,5 @@ namespace TupleClass{
     float magnitude(const Tuple &a);
     Tuple normalize(const Tuple &a);
 }
+
 #endif
