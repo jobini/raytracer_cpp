@@ -21,6 +21,12 @@ ADD_LIBRARY(SourceMatrix
     ../src/tuple.cpp
 )
 
+ADD_LIBRARY(SourceTransformations
+    ../src/matrix.cpp
+    ../src/transformations.cpp
+    ../src/tuple.cpp
+)
+
 ADD_EXECUTABLE(TestsTuple tuple_tests.cpp)
 target_link_libraries(TestsTuple SourceTuple)
 
@@ -29,5 +35,8 @@ target_link_libraries(TestsCanvas SourceCanvas)
 
 ADD_EXECUTABLE(TestsMatrix matrix_tests.cpp)
 target_link_libraries(TestsMatrix SourceMatrix)
+
+ADD_EXECUTABLE(TestsTransformations transformations_tests.cpp)
+target_link_libraries(TestsTransformations SourceTransformations)
 
 

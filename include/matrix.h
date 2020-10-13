@@ -1,3 +1,6 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include <vector>
 #include "tuple.h"
 
@@ -41,3 +44,4 @@ namespace MatrixClass{
     float cofactor(const Matrix &A, size_t row_index, size_t col_index);
     Matrix inverse(const Matrix &A);
 }
+#endif
