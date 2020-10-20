@@ -4,6 +4,7 @@
 #include "transformations.h"
 
 using TransformationsClass::translation;
+using TransformationsClass::scaling;
 using TupleClass::point;
 using TupleClass::vector;
 using TupleClass::Tuple;
@@ -32,6 +33,15 @@ TEST_CASE("Translation does not affect vectors"){
         Matrix transform = translation(5, -3, 2);
         Tuple v = vector(-3, 4, 5);
         REQUIRE(transform.mm(v) == v);
+    }
+}
+
+
+TEST_CASE("A scaling matrix applied to a point"){
+    GIVEN("A scaling matrix and a point"){
+        Matrix transform = scaling(2, 3, 4);
+        Tuple p = point(-4, 6, 8);
+        REQUIRE(transform.mm(p) == point(-8, 18, 32));
     }
 }
 
