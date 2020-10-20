@@ -62,3 +62,11 @@ TEST_CASE("Multiplying by the inverse of a scaling matrix"){
     }
 }
 
+TEST_CASE("Reflection is scaling by a negative value"){
+    GIVEN("A scaling matrix for reflection and a point"){
+        Matrix transform = scaling(-1, 1, 1);
+        Tuple p = point(2, 3, 4);
+        REQUIRE(transform.mm(p) == point(-2, 3, 4));
+    }
+}
+
