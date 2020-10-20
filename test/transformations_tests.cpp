@@ -53,3 +53,12 @@ TEST_CASE("A scaling matrix applied to a vector"){
     }
 }
 
+TEST_CASE("Multiplying by the inverse of a scaling matrix"){
+    GIVEN("A scaling matrix, its inverse, and a vector"){
+        Matrix transform = scaling(2, 3, 4);
+        Matrix inv = inverse(transform);
+        Tuple v = vector(-4, 6, 8);
+        REQUIRE(inv.mm(v) == vector(-2, 2, 2));
+    }
+}
+
