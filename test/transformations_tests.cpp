@@ -45,3 +45,11 @@ TEST_CASE("A scaling matrix applied to a point"){
     }
 }
 
+TEST_CASE("A scaling matrix applied to a vector"){
+    GIVEN("A scaling matrix and a vector"){
+        Matrix transform = scaling(2, 3, 4);
+        Tuple v = vector(-4, 6, 8);
+        REQUIRE(transform.mm(v) == vector(-8, 18, 32));
+    }
+}
+
