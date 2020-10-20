@@ -4,15 +4,11 @@
 
 namespace TupleClass{
     bool Tuple::isPoint(){
-        if (this->w == 1.0)
-            return true;
-        return false;
+        return (this->w == 1.0);
     }
 
     bool Tuple::isVector(){
-        if (this->w == 0.0)
-            return true;
-        return false;
+        return (this->w == 0.0);
     }
 
     Tuple point(float x, float y, float z){
