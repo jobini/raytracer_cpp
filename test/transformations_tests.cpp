@@ -125,3 +125,48 @@ TEST_CASE("A shearing transformation moves x in proportion to y"){
         REQUIRE(transform.mm(p) == point(5, 3, 4));
     }
 }
+
+TEST_CASE("A shearing transformation moves x in proportion to z"){
+    GIVEN("A point and a shearing matrix"){
+        Tuple p = point(2, 3, 4);
+        Matrix transform = shearing(0, 1, 0, 0, 0, 0);
+
+        REQUIRE(transform.mm(p) == point(6, 3, 4));
+    }
+}
+
+TEST_CASE("A shearing transformation moves y in proportion to x"){
+    GIVEN("A point and a shearing matrix"){
+        Tuple p = point(2, 3, 4);
+        Matrix transform = shearing(0, 0, 1, 0, 0, 0);
+
+        REQUIRE(transform.mm(p) == point(2, 5, 4));
+    }
+}
+
+TEST_CASE("A shearing transformation moves y in proportion to z"){
+    GIVEN("A point and a shearing matrix"){
+        Tuple p = point(2, 3, 4);
+        Matrix transform = shearing(0, 0, 0, 1, 0, 0);
+
+        REQUIRE(transform.mm(p) == point(2, 7, 4));
+    }
+}
+
+TEST_CASE("A shearing transformation moves z in proportion to x"){
+    GIVEN("A point and a shearing matrix"){
+        Tuple p = point(2, 3, 4);
+        Matrix transform = shearing(0, 0, 0, 0, 1, 0);
+
+        REQUIRE(transform.mm(p) == point(2, 3, 6));
+    }
+}
+
+TEST_CASE("A shearing transformation moves z in proportion to y"){
+    GIVEN("A point and a shearing matrix"){
+        Tuple p = point(2, 3, 4);
+        Matrix transform = shearing(0, 0, 0, 0, 0, 1);
+
+        REQUIRE(transform.mm(p) == point(2, 3, 7));
+    }
+}
