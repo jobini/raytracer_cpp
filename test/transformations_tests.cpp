@@ -5,6 +5,9 @@
 
 using TransformationsClass::translation;
 using TransformationsClass::scaling;
+using TransformationsClass::rotation_x;
+using TransformationsClass::rotation_y;
+using TransformationsClass::rotation_z;
 using TupleClass::point;
 using TupleClass::vector;
 using TupleClass::Tuple;
@@ -67,6 +70,27 @@ TEST_CASE("Reflection is scaling by a negative value"){
         Matrix transform = scaling(-1, 1, 1);
         Tuple p = point(2, 3, 4);
         REQUIRE(transform.mm(p) == point(-2, 3, 4));
+    }
+}
+
+TEST_CASE("Rotating a point around the x-axis"){
+    GIVEN("A point and two rotation matrices"){
+        Tuple p = point(0, 1, 0);
+        Matrix half_quarter = rotation_x(M_PI/4);
+        Matrix full_quarter = rotation_x(M_PI/2);
+
+        REQUIRE(half_quarter.mm(p) == point(0, sqrt(2)/2, sqrt(2)/2));
+        REQUIRE(full_quarter.mm(p) == point(0, 0, 1));
+    }
+}
+
+TEST_CASE("The inverse of an x-rotation rotates in the opposite direction"){
+    GIVEN("A point and a rotation matrix"){
+        Tuple p = point(0, 1, 0);
+        Matrix half_quarter = rotation_x(M_PI/4);
+        Matrix inv = inverse(half_quarter);
+
+        REQUIRE(inv.mm(p) == point(0, sqrt(2)/2, -sqrt(2)/2));
     }
 }
 

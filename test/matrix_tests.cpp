@@ -46,8 +46,15 @@ TEST_CASE("A 3x3 matrix ought to be representable"){
 
 TEST_CASE("Matrix equality with identical matrices"){
     GIVEN("Two matrices A and B"){
-        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
-        Matrix B = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
+        Matrix A = {{1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 8, 7, 6},
+                    {5, 4, 3, 2}};
+
+        Matrix B = {{1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 8, 7, 6},
+                    {5, 4, 3, 2}};
 
         REQUIRE(A == B);
     }
@@ -55,8 +62,15 @@ TEST_CASE("Matrix equality with identical matrices"){
 
 TEST_CASE("Matrix equality with different matrices"){
     GIVEN("Two matrices A and B"){
-        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
-        Matrix B = {{2, 3, 4, 5}, {6, 7, 8, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+        Matrix A = {{1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 8, 7, 6},
+                    {5, 4, 3, 2}};
+
+        Matrix B = {{2, 3, 4, 5},
+                    {6, 7, 8, 9},
+                    {8, 7, 6, 5},
+                    {4, 3, 2, 1}};
 
         REQUIRE(A != B);
     }
@@ -64,8 +78,14 @@ TEST_CASE("Matrix equality with different matrices"){
 
 TEST_CASE("Matrix equality with matrices having different number of rows"){
     GIVEN("Two matrices A and B"){
-        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
-        Matrix B = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}};
+        Matrix A = {{1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 8, 7, 6},
+                    {5, 4, 3, 2}};
+
+        Matrix B = {{1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 8, 7, 6}};
 
         REQUIRE(A != B);
     }
@@ -73,32 +93,56 @@ TEST_CASE("Matrix equality with matrices having different number of rows"){
 
 TEST_CASE("Matrix equality with matrices having different number of columns"){
     GIVEN("Two matrices A and B"){
-        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
-        Matrix B = {{1, 2, 3}, {5, 6, 7}, {9, 8, 7}, {5, 4, 3}};
+        Matrix A = {{1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 8, 7, 6},
+                    {5, 4, 3, 2}};
+
+        Matrix B = {{1, 2, 3},
+                    {5, 6, 7},
+                    {9, 8, 7},
+                    {5, 4, 3}};
         REQUIRE(A != B);
     }
 }
 
 TEST_CASE("Multiplying two matrices"){
     GIVEN("Two matrices A and B"){
-        Matrix A = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 8, 7, 6}, {5, 4, 3, 2}};
-        Matrix B = {{-2, 1, 2, 3}, {3, 2, 1, -1}, {4, 3, 6, 5}, {1, 2, 7, 8}};
+        Matrix A = {{1, 2, 3, 4},
+                    {5, 6, 7, 8}, 
+                    {9, 8, 7, 6},
+                    {5, 4, 3, 2}};
+
+        Matrix B = {{-2, 1, 2, 3},
+                    {3, 2, 1, -1},
+                    {4, 3, 6, 5},
+                    {1, 2, 7, 8}};
         Matrix C = A.mm(B);
-        REQUIRE(A.mm(B) == Matrix({{20, 22, 50, 48}, {44, 54, 114, 108}, {40, 58, 110, 102}, {16, 26, 46, 42}}));
+        REQUIRE(A.mm(B) == Matrix({{20, 22, 50, 48},
+                                   {44, 54, 114, 108},
+                                   {40, 58, 110, 102},
+                                   {16, 26, 46, 42}}));
     }
 }
 
 TEST_CASE("Multiplying two matrices (uneven dimensions)"){
     GIVEN("Two matrices A and B"){
-        Matrix A = {{1, 2, 3}, {-4, -5, -6}};
-        Matrix B = {{7, 8}, {-9, -10}, {11, 12}};
-        REQUIRE(A.mm(B) == Matrix({{22, 24}, {-49, -54}}));
+        Matrix A = {{1, 2, 3},
+                    {-4, -5, -6}};
+        Matrix B = {{7, 8},
+                    {-9, -10},
+                    {11, 12}};
+        REQUIRE(A.mm(B) == Matrix({{22, 24},
+                                   {-49, -54}}));
     }
 }
 
 TEST_CASE("Multiplying a matrix with a tuple"){
     GIVEN("A matrices A and a Tuple t"){
-        Matrix A = {{1, 2, 3, 4}, {2, 4, 4, 2}, {8, 6, 4, 1}, {0, 0, 0, 1}};
+        Matrix A = {{1, 2, 3, 4},
+                    {2, 4, 4, 2},
+                    {8, 6, 4, 1},
+                    {0, 0, 0, 1}};
         Tuple t(1, 2, 3, 1);
         REQUIRE(A.mm(t) == Tuple(18, 24, 33, 1));
     }
@@ -106,50 +150,78 @@ TEST_CASE("Multiplying a matrix with a tuple"){
 
 TEST_CASE("Multiplying a matrix with the identity matrix"){
     GIVEN("A matrices A and the identity matrix"){
-        Matrix A = {{0, 1, 2, 4}, {1, 2, 4, 8}, {2, 4, 8, 16}, {4, 8, 16, 32}};
-        Matrix identity_matrix = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0},{0, 0, 0, 1}};
+        Matrix A = {{0, 1, 2, 4},
+                    {1, 2, 4, 8},
+                    {2, 4, 8, 16},
+                    {4, 8, 16, 32}};
+
+        Matrix identity_matrix = {{1, 0, 0, 0},
+                                  {0, 1, 0, 0},
+                                  {0, 0, 1, 0},
+                                  {0, 0, 0, 1}};
         REQUIRE(A.mm(identity_matrix) == A);
     }
 }
 
 TEST_CASE("Transposing a matrix"){
     GIVEN("A matrices A"){
-        Matrix A = {{0, 9, 3, 0}, {9, 8, 0, 8}, {1, 8, 5, 3}, {0, 0, 5, 8}};
-        REQUIRE(A.transpose() == Matrix({{0, 9, 1, 0}, {9, 8, 8, 0}, {3, 0, 5, 5}, {0, 8, 3, 8}}));
+        Matrix A = {{0, 9, 3, 0},
+                    {9, 8, 0, 8},
+                    {1, 8, 5, 3},
+                    {0, 0, 5, 8}};
+
+        REQUIRE(A.transpose() == Matrix({{0, 9, 1, 0},
+                                         {9, 8, 8, 0},
+                                         {3, 0, 5, 5},
+                                         {0, 8, 3, 8}}));
     }
 }
 
 TEST_CASE("Transposing the identity matrix"){
     GIVEN("The identity matrix"){
-        Matrix identity_matrix = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0},{0, 0, 0, 1}};
+        Matrix identity_matrix = {{1, 0, 0, 0},
+                                  {0, 1, 0, 0},
+                                  {0, 0, 1, 0},
+                                  {0, 0, 0, 1}};
         REQUIRE(identity_matrix.transpose() == identity_matrix);
     }
 }
 
 TEST_CASE("Calculating the determinant of a 2x2 matrix"){
     GIVEN("A 2x2 matrix"){
-        Matrix A = {{1, 5}, {-3, 2}};
+        Matrix A = {{1, 5},
+                    {-3, 2}};
         REQUIRE(determinant(A) == Approx(17).margin(EPSILON));
     }
 }
 
 TEST_CASE("A submatrix of a 3x3 matrix is a 2x2 matrix"){
     GIVEN("A 3x3 matrix"){
-        Matrix A = {{1, 5, 0}, {-3, 2, 7}, {0, 6, -3}};
-        REQUIRE(A.submatrix(0, 2) == Matrix({{-3, 2}, {0, 6}}));
+        Matrix A = {{1, 5, 0},
+                    {-3, 2, 7},
+                    {0, 6, -3}};
+        REQUIRE(A.submatrix(0, 2) == Matrix({{-3, 2},
+                                             {0, 6}}));
     }
 }
 
 TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix"){
     GIVEN("A 4x4 matrix"){
-        Matrix A = {{-6, 1, 1, 6}, {-8, 5, 8, 6}, {-1, 0, 8, 2}, {-7, 1, -1, 1}};
-        REQUIRE(A.submatrix(2, 1) == Matrix({{-6, 1, 6}, {-8, 8, 6}, {-7, -1, 1}}));
+        Matrix A = {{-6, 1, 1, 6},
+                    {-8, 5, 8, 6},
+                    {-1, 0, 8, 2},
+                    {-7, 1, -1, 1}};
+        REQUIRE(A.submatrix(2, 1) == Matrix({{-6, 1, 6},
+                                             {-8, 8, 6},
+                                             {-7, -1, 1}}));
     }
 }
 
 TEST_CASE("Calculating a minor of a 3x3 matrix"){
     GIVEN("A 3x3 matrix A and one of its submatrices B"){
-        Matrix A = {{3, 5, 0}, {2, -1, 7}, {6, -1, 5}};
+        Matrix A = {{3, 5, 0},
+                    {2, -1, 7},
+                    {6, -1, 5}};
         Matrix B = A.submatrix(1, 0);
         REQUIRE(determinant(B) == Approx(25).margin(EPSILON));
         REQUIRE(minor(A, 1, 0) == Approx(25).margin(EPSILON));
@@ -158,7 +230,9 @@ TEST_CASE("Calculating a minor of a 3x3 matrix"){
 
 TEST_CASE("Calculating a cofactor of a 3x3 matrix"){
     GIVEN("A 3x3 matrix A"){
-        Matrix A = {{3, 5, 0}, {2, -1, -7}, {6, -1, 5}};
+        Matrix A = {{3, 5, 0},
+                    {2, -1, -7},
+                    {6, -1, 5}};
         
         REQUIRE(minor(A, 0, 0) == Approx(-12).margin(EPSILON));
         REQUIRE(cofactor(A, 0, 0) == Approx(-12).margin(EPSILON));
@@ -169,7 +243,9 @@ TEST_CASE("Calculating a cofactor of a 3x3 matrix"){
 
 TEST_CASE("Calculating the determinant of a 3x3 matrix"){
     GIVEN("A 3x3 matrix A"){
-        Matrix A = {{1, 2, 6}, {-5, 8, -4}, {2, 6, 4}};
+        Matrix A = {{1, 2, 6},
+                    {-5, 8, -4},
+                    {2, 6, 4}};
         
         REQUIRE(cofactor(A, 0, 0) == Approx(56).margin(EPSILON));
         REQUIRE(cofactor(A, 0, 1) == Approx(12).margin(EPSILON));
@@ -180,7 +256,10 @@ TEST_CASE("Calculating the determinant of a 3x3 matrix"){
 
 TEST_CASE("Calculating the determinant of a 4x4 matrix"){
     GIVEN("A 3x3 matrix A"){
-        Matrix A = {{-2, -8, 3, 5}, {-3, 1, 7, 3}, {1, 2, -9, 6}, {-6, 7, 7, -9}};
+        Matrix A = {{-2, -8, 3, 5},
+                    {-3, 1, 7, 3},
+                    {1, 2, -9, 6},
+                    {-6, 7, 7, -9}};
         
         REQUIRE(cofactor(A, 0, 0) == Approx(690).margin(EPSILON));
         REQUIRE(cofactor(A, 0, 1) == Approx(447).margin(EPSILON));
@@ -192,7 +271,11 @@ TEST_CASE("Calculating the determinant of a 4x4 matrix"){
 
 TEST_CASE("Testing an invertible matrix for invertibility"){
     GIVEN("A 4x4 matrix A"){
-        Matrix A = {{6, 4, 4, 4}, {5, 5, 7, 6}, {4, -9, 3, -7}, {9, 1, 7, -6}};
+        Matrix A = {{6, 4, 4, 4},
+                    {5, 5, 7, 6},
+                    {4, -9, 3, -7},
+                    {9, 1, 7, -6}};
+
         REQUIRE(determinant(A) == Approx(-2120).margin(EPSILON));
         REQUIRE(A.is_invertible());
     }
@@ -200,7 +283,11 @@ TEST_CASE("Testing an invertible matrix for invertibility"){
 
 TEST_CASE("Testing a non-invertible matrix for invertibility"){
     GIVEN("A 4x4 matrix A"){
-        Matrix A = {{-4, 2, -2, -3}, {9, 6, 2, 6}, {0, -5, 1, -5}, {0, 0, 0, 0}};
+        Matrix A = {{-4, 2, -2, -3},
+                    {9, 6, 2, 6},
+                    {0, -5, 1, -5},
+                    {0, 0, 0, 0}};
+
         REQUIRE(determinant(A) == Approx(0).margin(EPSILON));
         REQUIRE(!A.is_invertible());
     }
@@ -208,7 +295,11 @@ TEST_CASE("Testing a non-invertible matrix for invertibility"){
 
 TEST_CASE("Calculating the inverse of a matrix"){
     GIVEN("A 4x4 matrix A"){
-        Matrix A = {{-5, 2, 6, -8}, {1, -5, 1, 8}, {7, 7, -6, -7}, {1, -3, 7, 4}};
+        Matrix A = {{-5, 2, 6, -8},
+                    {1, -5, 1, 8},
+                    {7, 7, -6, -7},
+                    {1, -3, 7, 4}};
+
         Matrix B = inverse(A);
         REQUIRE(determinant(A) == Approx(532).margin(EPSILON));
         REQUIRE(cofactor(A, 2, 3) == Approx(-160).margin(EPSILON));
@@ -224,7 +315,11 @@ TEST_CASE("Calculating the inverse of a matrix"){
 
 TEST_CASE("Calculating the inverse of another matrix"){
     GIVEN("A 4x4 matrix A"){
-        Matrix A = {{8, -5, 9, 2}, {7, 5, 6, 1}, {-6, 0, 9, 6}, {-3, 0, -9, -4}};
+        Matrix A = {{8, -5, 9, 2},
+                    {7, 5, 6, 1},
+                    {-6, 0, 9, 6},
+                    {-3, 0, -9, -4}};
+
         REQUIRE(inverse(A) == Matrix({{-0.15385, -0.15385, -0.28205, -0.53846}, 
                                       {-0.07692, 0.12308, 0.02564, 0.03077}, 
                                       {0.35897, 0.35897, 0.43590, 0.92308},
@@ -234,7 +329,11 @@ TEST_CASE("Calculating the inverse of another matrix"){
 
 TEST_CASE("Calculating the inverse of a third matrix"){
     GIVEN("A 4x4 matrix A"){
-        Matrix A = {{9, 3, 0, 9}, {-5, -2, -6, -3}, {-4, 9, 6, 4}, {-7, 6, 6, 2}};
+        Matrix A = {{9, 3, 0, 9},
+                    {-5, -2, -6, -3},
+                    {-4, 9, 6, 4},
+                    {-7, 6, 6, 2}};
+                    
         REQUIRE(inverse(A) == Matrix({{-0.04074, -0.07778, 0.14444, -0.22222}, 
                                       {-0.07778, 0.03333, 0.36667, -0.33333}, 
                                       {-0.02901, -0.14630, -0.10926, 0.12963},
