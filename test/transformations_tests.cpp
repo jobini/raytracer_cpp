@@ -170,3 +170,33 @@ TEST_CASE("A shearing transformation moves z in proportion to y"){
         REQUIRE(transform.mm(p) == point(2, 3, 7));
     }
 }
+
+TEST_CASE("Individual transformations are applied in sequence"){
+    GIVEN("A point and three transformation matrices"){
+        Tuple p = point(1, 0, 1);
+        Matrix A = rotation_x(M_PI/2);
+        Matrix B = scaling(5, 5, 5);
+        Matrix C = translation(10, 5, 7);
+
+        Tuple p2 = A.mm(p);
+        REQUIRE(p2 == point(1, -1, 0));
+
+        Tuple p3 = B.mm(p2);
+        REQUIRE(p3 == point(5, -5, 0));
+
+        Tuple p4 = C.mm(p3);
+        REQUIRE(p4 == point(15, 0, 7));
+    }
+}
+
+TEST_CASE("Chained transformations must be applied in reverse order"){
+    GIVEN("A point and three transformation matrices"){
+        Tuple p = point(1, 0, 1);
+        Matrix A = rotation_x(M_PI/2);
+        Matrix B = scaling(5, 5, 5);
+        Matrix C = translation(10, 5, 7);
+
+        Matrix T = C.mm(B.mm(A));
+        REQUIRE(T.mm(p) == point(15, 0, 7));
+    }
+}
