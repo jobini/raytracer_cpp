@@ -6,10 +6,10 @@
 class Projectile
 {
     public:
-        Projectile(const Tuple &pos, const Tuple &vel):
+        Projectile(const TupleClass::Tuple &pos, const TupleClass::Tuple &vel):
                                position(pos), velocity(vel){}
-        Tuple position;
-        Tuple velocity;
+        TupleClass::Tuple position;
+        TupleClass::Tuple velocity;
 };
 
 #endif

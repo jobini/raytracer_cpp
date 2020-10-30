@@ -5,6 +5,9 @@
 #include "canvas.h"
 #include "color.h"
 
+using TupleClass::point;
+using TupleClass::vector;
+
 Projectile tick(const Projectile &proj, const Environment &env){
     Tuple new_position = proj.position + proj.velocity;
     Tuple new_velocity = proj.velocity + env.gravity + env.wind;

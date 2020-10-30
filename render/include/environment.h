@@ -6,10 +6,10 @@
 class Environment
 {
     public:
-        Environment(const Tuple &grav, const Tuple &win):
+        Environment(const TupleClass::Tuple &grav, const TupleClass::Tuple &win):
                     gravity(grav), wind(win){}
-        Tuple gravity;
-        Tuple wind;
+        TupleClass::Tuple gravity;
+        TupleClass::Tuple wind;
 };
 
 #endif
