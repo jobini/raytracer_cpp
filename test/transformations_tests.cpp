@@ -94,3 +94,25 @@ TEST_CASE("The inverse of an x-rotation rotates in the opposite direction"){
     }
 }
 
+TEST_CASE("Rotating a point around the y-axis"){
+    GIVEN("A point and two rotation matrices"){
+        Tuple p = point(0, 0, 1);
+        Matrix half_quarter = rotation_y(M_PI/4);
+        Matrix full_quarter = rotation_y(M_PI/2);
+
+        REQUIRE(half_quarter.mm(p) == point(sqrt(2)/2, 0, sqrt(2)/2));
+        REQUIRE(full_quarter.mm(p) == point(1, 0, 0));
+    }
+}
+
+TEST_CASE("Rotating a point around the z-axis"){
+    GIVEN("A point and two rotation matrices"){
+        Tuple p = point(0, 1, 0);
+        Matrix half_quarter = rotation_z(M_PI/4);
+        Matrix full_quarter = rotation_z(M_PI/2);
+
+        REQUIRE(half_quarter.mm(p) == point(-sqrt(2)/2, sqrt(2)/2, 0));
+        REQUIRE(full_quarter.mm(p) == point(-1, 0, 0));
+    }
+}
+
