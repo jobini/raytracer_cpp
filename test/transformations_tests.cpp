@@ -8,6 +8,7 @@ using TransformationsClass::scaling;
 using TransformationsClass::rotation_x;
 using TransformationsClass::rotation_y;
 using TransformationsClass::rotation_z;
+using TransformationsClass::shearing;
 using TupleClass::point;
 using TupleClass::vector;
 using TupleClass::Tuple;
@@ -116,3 +117,11 @@ TEST_CASE("Rotating a point around the z-axis"){
     }
 }
 
+TEST_CASE("A shearing transformation moves x in proportion to y"){
+    GIVEN("A point and a shearing matrix"){
+        Tuple p = point(2, 3, 4);
+        Matrix transform = shearing(1, 0, 0, 0, 0, 0);
+
+        REQUIRE(transform.mm(p) == point(5, 3, 4));
+    }
+}
